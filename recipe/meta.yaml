@@ -1,5 +1,5 @@
 {% set name = "torcpy" %}
-{% set version = "0.1" %}
+{% set version = "0.1.1" %}
 
 package:
   name: "{{ name|lower }}"
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 52785c7e7df63805b3061453e48c20e2533ace6e0dbbf45f9d72f33c3e1fb414
+  sha256: a672c51729ee549154b59a424916a9fc4ee17ac8430b75177ba840a08eb41767
 
 
 build:
@@ -18,11 +18,12 @@ build:
 requirements:
   host:
     - pip
-    - python >=3.0
+    - python
   run:
-    - python >=3.0
+    - python
     - mpi4py
     - termcolor
+    - coloredlogs
 
 test:
   imports:
