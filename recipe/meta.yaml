@@ -6,26 +6,28 @@ package:
   version: "{{ version }}"
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: a672c51729ee549154b59a424916a9fc4ee17ac8430b75177ba840a08eb41767
 
 
 build:
-  number: 0
+  number: 1
   script: "{{ PYTHON }} -m pip install . -vv"
-  skip: true  # [win]
+  noarch: python
 
 requirements:
   host:
     - pip
-    - python
+    - python {{ python_min }}
   run:
-    - python
+    - python >={{ python_min }}
     - mpi4py
     - termcolor
     - coloredlogs
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - torcpy
 
